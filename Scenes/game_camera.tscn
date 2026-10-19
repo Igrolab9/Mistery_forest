@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bjthoj56yxih8"]
+
+[ext_resource type="Script" uid="uid://dwk7lhv4ndc53" path="res://Scripts/camera_2d.gd" id="1_t64d6"]
+[ext_resource type="Texture2D" uid="uid://bb7rkfix3byrb" path="res://Pictures/Paralax/back.png" id="2_7xfvj"]
+[ext_resource type="Texture2D" uid="uid://dqn7hjt66bcjx" path="res://Pictures/Paralax/middle.png" id="3_6gvtx"]
+
+[node name="Game_camera" type="Camera2D" unique_id=636350668]
+zoom = Vector2(2, 2)
+script = ExtResource("1_t64d6")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1577557285]
+z_index = -10
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=882641351]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_7xfvj")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Parallax2D" unique_id=654868146]
+position = Vector2(-192, 0)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_7xfvj")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Parallax2D" unique_id=1199985321]
+position = Vector2(192, 0)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_7xfvj")
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1999731160]
+z_index = -5
+scroll_scale = Vector2(0.95, 1)
+scroll_offset = Vector2(0, -40)
+repeat_size = Vector2(576, 0)
+repeat_times = 50
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" unique_id=939266699]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_6gvtx")

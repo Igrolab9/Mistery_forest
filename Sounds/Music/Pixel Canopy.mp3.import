@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://daa2w8i4rn82o"
+path="res://.godot/imported/Pixel Canopy.mp3-191f5d29375cd8fef77277a03b269d45.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/Pixel Canopy.mp3"
+dest_files=["res://.godot/imported/Pixel Canopy.mp3-191f5d29375cd8fef77277a03b269d45.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

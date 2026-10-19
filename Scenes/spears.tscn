@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c71wba4flytao"]
+
+[ext_resource type="Script" uid="uid://mo8yrms1fiqs" path="res://Scripts/spears.gd" id="1_go6d2"]
+[ext_resource type="Texture2D" uid="uid://3vbrnawcbrau" path="res://Pictures/Obstacles/Spears-2.png" id="1_kawv5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrivr"]
+size = Vector2(30, 13)
+
+[node name="Spears" type="Area2D" unique_id=2063772389]
+script = ExtResource("1_go6d2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1892483623]
+texture = ExtResource("1_kawv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1371859155]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_xrivr")

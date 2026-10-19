@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cdpimcwow8i46"]
+
+[ext_resource type="Texture2D" uid="uid://cul0f3g54rsp2" path="res://Pictures/Obstacles/Crystal.png" id="1_c61q8"]
+[ext_resource type="Script" uid="uid://b8yi5f5e6tg6k" path="res://Scripts/Crystal.gd" id="1_vacj6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mfrgv"]
+radius = 18.169725
+
+[node name="Crystal" type="Area2D" unique_id=1117037700]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_vacj6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=15504819]
+texture = ExtResource("1_c61q8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=337769317]
+position = Vector2(0.5, 1)
+shape = SubResource("CircleShape2D_mfrgv")

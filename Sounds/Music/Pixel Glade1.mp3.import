@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://242mab8bxh7x"
+path="res://.godot/imported/Pixel Glade1.mp3-1adbb80131f9478e3628dbe60e0afd81.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/Pixel Glade1.mp3"
+dest_files=["res://.godot/imported/Pixel Glade1.mp3-1adbb80131f9478e3628dbe60e0afd81.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
