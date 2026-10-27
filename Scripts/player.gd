@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var _player_animation: AnimatedSprite2D = $Player_animation
 @onready var _pickup_area: Area2D = $PickupArea
 @onready var _bow_barrel: Marker2D = $Marker2D
+@onready var _death_label: Label = $Label  # Ссылка на надпись "Вы погибли"
 
 var _player_health: float = 1.0
 
@@ -14,11 +15,15 @@ var _bow: BowController
 var _health: HealthComponent
 var _barrel_default_x: float = 0.0
 var _is_attacking: bool = false
-var _is_dead: bool = false            # НОВОЕ: состояние смерти
-var _restart_requested: bool = false  # НОВОЕ: защита от двойного перезапуска
+var _is_dead: bool = false
+var _restart_requested: bool = false
 
 func _ready() -> void:
 	_player_animation._play_idle_animation()
+	
+	# Скрываем надпись при старте
+	if _death_label:
+		_death_label.visible = false
 	
 	_inventory = CrystalInventory.new()
 	_inventory.crystal_count_changed.connect(_on_crystal_count_changed)
@@ -42,7 +47,6 @@ func _ready() -> void:
 	_player_animation.animation_finished.connect(_on_animation_finished)
 
 func _physics_process(delta: float) -> void:
-	# Мёртвый игрок не двигается и не анимируется движением
 	if _is_dead:
 		return
 	
@@ -84,8 +88,7 @@ func _on_animation_finished() -> void:
 		&"Attack":
 			_is_attacking = false
 		&"Death":
-			# НОВОЕ: анимация смерти доиграла — перезапускаем сцену
-			_restart_scene()
+			pass  # Анимация смерти уже учтена в таймерах
 
 func _on_pickup_area_area_entered(area: Area2D) -> void:
 	if area is BaseCollectible:
@@ -123,7 +126,6 @@ func _update_animation() -> void:
 	else:
 		_player_animation._play_idle_animation()
 
-# Методы нанесения урона
 func take_damage(amount: float) -> void:
 	print("Получен урон!")
 	_health.take_damage(amount)
@@ -134,9 +136,25 @@ func _on_death() -> void:
 	velocity = Vector2.ZERO
 	_player_animation._play_death_animation()
 	
-	# НОВОЕ: страховка на случай, если анимации Death нет или она зациклена.
-	# После перезагрузки сцены игрок будет освобождён, и соединение само отвалится.
-	get_tree().create_timer(1.5).timeout.connect(_restart_scene)
+	# Отключаем управление и коллизии
+	set_process(false)
+	set_physics_process(false)
+	
+	# Последовательность смерти:
+	# 1. Проигрывается анимация смерти (0.7 сек)
+	# 2. Появляется надпись "Вы погибли"
+	# 3. Надпись висит 2 секунды
+	# 4. Перезапуск сцены
+	
+	get_tree().create_timer(0.7).timeout.connect(_show_death_message)
+
+func _show_death_message() -> void:
+	# Показываем надпись
+	if _death_label:
+		_death_label.visible = true
+	
+	# Ждём 2 секунды и перезапускаем сцену
+	get_tree().create_timer(2.0).timeout.connect(_restart_scene)
 
 func _restart_scene() -> void:
 	if _restart_requested:

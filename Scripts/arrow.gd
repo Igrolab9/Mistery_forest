@@ -47,9 +47,6 @@ func _physics_process(delta: float) -> void:
 		_return_to_pool()
 
 func _on_body_entered(body: Node2D) -> void:
-	# Двойная страховка: никогда не бьём стрелка
-	if body == _shooter or body.is_in_group("player"):
-		return
 	
 	# Статические объекты
 	if body is StaticBody2D or body is TileMap or body is TileMapLayer:

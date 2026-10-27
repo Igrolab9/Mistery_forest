@@ -27,6 +27,10 @@ window/stretch/aspect="expand"
 
 movie_writer/movie_file="D:/Студия Девятка/Видео с проектов/1.avi"
 
+[global_group]
+
+player=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
