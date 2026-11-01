@@ -535,4 +535,4 @@ position = Vector2(2626, 614)
 position = Vector2(2658, 614)
 
 [node name="Goblin" parent="." unique_id=449857763 instance=ExtResource("14_penfe")]
-position = Vector2(1241, 472)
+position = Vector2(531, 488)
